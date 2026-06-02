@@ -3,6 +3,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import routes from "./routes";
+import {
+  globalErrorHandler,
+} from "./middleware/error.middleware";
 
 const app = express();
 
@@ -15,6 +19,10 @@ app.use(cookieParser());
 app.use(helmet());
 
 app.use(morgan("dev"));
+
+app.use("/api", routes);
+
+app.use(globalErrorHandler);
 
 app.get("/health", (_, res) => {
   res.json({

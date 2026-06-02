@@ -3,6 +3,7 @@ import {
   uuid,
   varchar,
   timestamp,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
@@ -20,7 +21,9 @@ export const users = pgTable("users", {
     length: 255,
   }).notNull(),
 
-  createdAt: timestamp("created_at")
-    .defaultNow()
-    .notNull(),
+  isEmailVerified: boolean("is_email_verified").default(false),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
