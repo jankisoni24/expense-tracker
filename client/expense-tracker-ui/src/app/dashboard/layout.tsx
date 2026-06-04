@@ -1,3 +1,4 @@
+import { AuthInitializer } from "@/components/auth/AuthInitializer";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
@@ -8,6 +9,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
+    <>
+    <AuthInitializer />
     <ProtectedRoute>
       <div className="min-h-screen bg-[#f4f4f2] p-4">
         <div
@@ -38,5 +41,6 @@ export default function DashboardLayout({
         </div>
       </div>
     </ProtectedRoute>
+    </>
   );
 }

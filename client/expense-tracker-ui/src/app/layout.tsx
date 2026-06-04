@@ -17,8 +17,8 @@ export default function RootLayout({
       <body>
         <ReactQueryProvider>
           <AxiosProvider>
-          {children}
-          <Toaster richColors position="top-center" />
+            {children}
+            <Toaster richColors position="top-center" />
           </AxiosProvider>
         </ReactQueryProvider>
       </body>

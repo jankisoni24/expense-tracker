@@ -13,6 +13,7 @@ import { toast } from "sonner";
 
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/auth.store";
+import Link from "next/link";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -94,6 +95,15 @@ export const LoginForm = () => {
       >
         {loginMutation.isPending ? "Logging in..." : "Login"}
       </Button>
+      <p className="text-center text-sm text-muted-foreground">
+        Don't have an account?{" "}
+        <Link
+          href="/auth/register"
+          className="font-medium text-primary hover:underline"
+        >
+          Register
+        </Link>
+      </p>
     </form>
   );
 };

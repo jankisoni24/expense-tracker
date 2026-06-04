@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AuthLayout({
   children,
 }: {
@@ -32,13 +34,13 @@ export default function AuthLayout({
           "
         >
           <div>
-            <h1 className="text-4xl font-bold">
-              Expense Tracker
-            </h1>
+            <Link href="/">
+              <h1 className="text-4xl font-bold">Expense Tracker</h1>
+            </Link>
 
             <p className="mt-4 text-white/80">
-              Track expenses, monitor budgets
-              and build healthy financial habits.
+              Track expenses, monitor budgets and build healthy financial
+              habits.
             </p>
           </div>
 
@@ -87,13 +89,9 @@ function FeatureCard({
 }) {
   return (
     <div className="bg-white/10 rounded-[28px] p-5">
-      <h3 className="font-semibold">
-        {title}
-      </h3>
+      <h3 className="font-semibold">{title}</h3>
 
-      <p className="text-sm text-white/70 mt-2">
-        {description}
-      </p>
+      <p className="text-sm text-white/70 mt-2">{description}</p>
     </div>
   );
 }

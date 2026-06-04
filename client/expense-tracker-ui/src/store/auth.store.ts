@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 interface User {
   id: string;
@@ -11,43 +10,43 @@ interface AuthState {
   accessToken: string | null;
   user: User | null;
 
-  setAccessToken: (
-    token: string
-  ) => void;
+  isAuthLoading: boolean;
 
-  setUser: (
-    user: User
-  ) => void;
+  setAuthLoading: (value: boolean) => void;
+
+  setAccessToken: (token: string | null) => void;
+
+  setUser: (user: User | null) => void;
 
   logout: () => void;
 }
 
 export const useAuthStore =
-  create<AuthState>()(
-    persist(
-      (set) => ({
-        accessToken: null,
+  create<AuthState>((set) => ({
+    accessToken: null,
 
-        user: null,
+    user: null,
 
-        setAccessToken: (
-          token
-        ) =>
-          set({
-            accessToken: token,
-          }),
+    isAuthLoading: true,
 
-        setUser: (user) =>
-          set({ user }),
-
-        logout: () =>
-          set({
-            accessToken: null,
-            user: null,
-          }),
+    setAuthLoading: (value) =>
+      set({
+        isAuthLoading: value,
       }),
-      {
-        name: "auth-storage",
-      }
-    )
-  );
+
+    setAccessToken: (token) =>
+      set({
+        accessToken: token,
+      }),
+
+    setUser: (user) =>
+      set({
+        user,
+      }),
+
+    logout: () =>
+      set({
+        accessToken: null,
+        user: null,
+      }),
+  }));

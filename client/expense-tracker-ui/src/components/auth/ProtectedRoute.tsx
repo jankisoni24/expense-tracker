@@ -1,40 +1,40 @@
 "use client";
 
-import { useEffect } from "react";
-
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import { useAuthStore } from "@/store/auth.store";
 
-import { useHydrated } from "@/hooks/useHydrated";
-
-interface ProtectedRouteProps {
+export const ProtectedRoute = ({
+  children,
+}: {
   children: React.ReactNode;
-}
-
-export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+}) => {
   const router = useRouter();
 
-  const hydrated = useHydrated();
-
-  const accessToken = useAuthStore((state) => state.accessToken);
+  const {
+    accessToken,
+    isAuthLoading,
+  } = useAuthStore();
 
   useEffect(() => {
-    if (hydrated && !accessToken) {
-      router.replace("/auth/login");
+    if (
+      !isAuthLoading &&
+      !accessToken
+    ) {
+      router.replace(
+        "/auth/login"
+      );
     }
-  }, [hydrated, accessToken, router]);
+  }, [
+    accessToken,
+    isAuthLoading,
+    router,
+  ]);
 
-  if (!hydrated) {
+  if (isAuthLoading) {
     return (
-      <div
-        className="
-          min-h-screen
-          flex
-          items-center
-          justify-center
-        "
-      >
+      <div className="min-h-screen flex items-center justify-center">
         Loading...
       </div>
     );
