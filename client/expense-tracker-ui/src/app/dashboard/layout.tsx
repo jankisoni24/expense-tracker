@@ -9,16 +9,31 @@ export default function DashboardLayout({
 }) {
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-slate-50">
-        <div className="flex">
+      <div className="min-h-screen bg-[#f4f4f2] p-4">
+        <div
+          className="
+          flex
+          gap-4
+          h-[calc(100vh-32px)]
+        "
+        >
           <DashboardSidebar />
 
-          <div className="flex-1 flex flex-col min-h-screen">
+          <div
+            className="
+            flex-1
+            bg-[#fafaf8]
+            rounded-[28px]
+            border
+            border-[#ececec]
+            overflow-auto
+          "
+          >
             <DashboardHeader />
 
-            <main className="flex-1 p-8">
+            <div className="p-6">
               {children}
-            </main>
+            </div>
           </div>
         </div>
       </div>

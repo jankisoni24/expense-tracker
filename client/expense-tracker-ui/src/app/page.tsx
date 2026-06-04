@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { DashboardPreview } from "@/components/landing/DashboardPreview";
 
 export default function HomePage() {
   return (
@@ -7,59 +8,39 @@ export default function HomePage() {
       {/* Navbar */}
       <nav className="border-b bg-white">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <h1 className="text-xl font-bold">
-            Expense Tracker
-          </h1>
+          <h1 className="text-xl font-bold">Expense Tracker</h1>
 
           <div className="flex gap-3">
             <Button asChild variant="outline">
-              <Link href="/auth/login">
-                Login
-              </Link>
+              <Link href="/auth/login">Login</Link>
             </Button>
 
             <Button asChild>
-              <Link href="/auth/register">
-                Register
-              </Link>
+              <Link href="/auth/register">Register</Link>
             </Button>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="container mx-auto px-6 py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-6xl font-bold">
-            Track Every Rupee.
-          </h1>
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-[500px_1fr] gap-16 items-center">
+            <div>
+              <p className="text-[#405a45] font-medium">
+                Personal Finance Made Simple
+              </p>
 
-          <h2 className="mb-6 text-6xl font-bold text-primary">
-            Understand Every Expense.
-          </h2>
+              <h1 className="text-7xl font-bold mt-4 leading-tight">
+                Understand Your Money.
+              </h1>
 
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground">
-            Manage expenses, track budgets,
-            analyze spending patterns and
-            make smarter financial decisions.
-          </p>
+              <p className="mt-6 text-lg text-gray-500">
+                Track spending, budgets and savings from a beautiful dashboard.
+              </p>
+            </div>
 
-          <div className="flex justify-center gap-4">
-            <Button size="lg" asChild>
-              <Link href="/auth/register">
-                Get Started
-              </Link>
-            </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-            >
-              <Link href="/auth/login">
-                Login
-              </Link>
-            </Button>
+            <DashboardPreview />
           </div>
         </div>
       </section>

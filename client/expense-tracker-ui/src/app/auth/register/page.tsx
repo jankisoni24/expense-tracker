@@ -1,24 +1,19 @@
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
-
 import { RegisterForm } from "@/components/forms/RegisterForm";
 
 export default function RegisterPage() {
   return (
-    <Card className="w-full max-w-md shadow-lg">
-      <CardContent className="p-8">
-        <h1 className="mb-2 text-3xl font-bold">
-          Create Account
-        </h1>
+    <div className="w-full max-w-md">
+      <h1 className="text-4xl font-bold">
+        Create Account
+      </h1>
 
-        <p className="mb-8 text-muted-foreground">
-          Start tracking your expenses
-        </p>
+      <p className="mt-3 text-gray-500">
+        Start tracking your expenses today.
+      </p>
 
+      <div className="mt-8">
         <RegisterForm />
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

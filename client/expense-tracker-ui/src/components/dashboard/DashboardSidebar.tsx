@@ -1,58 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-
-import {
-  LayoutDashboard,
-  Receipt,
-  Tags,
-  BarChart3,
-  Settings,
-  LogOut,
-} from "lucide-react";
-
-import { toast } from "sonner";
-
+import { Home, Wallet, Tags, BarChart3, Settings, Search } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useLogout } from "@/hooks/useLogout";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { useAuthStore } from "@/store/auth.store";
 
-const menuItems = [
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Expenses",
-    href: "/dashboard/expenses",
-    icon: Receipt,
-  },
-  {
-    label: "Categories",
-    href: "/dashboard/categories",
-    icon: Tags,
-  },
-  {
-    label: "Reports",
-    href: "/dashboard/reports",
-    icon: BarChart3,
-  },
-  {
-    label: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
-  },
-];
-
 export const DashboardSidebar = () => {
-  const pathname = usePathname();
   const router = useRouter();
-
   const logoutMutation = useLogout();
-
-  const logout =
-    useAuthStore((state) => state.logout);
+  const logout = useAuthStore((state) => state.logout);
 
   const handleLogout = async () => {
     try {
@@ -69,69 +28,99 @@ export const DashboardSidebar = () => {
   return (
     <aside
       className="
-        w-72
-        bg-white
-        border-r
-        min-h-screen
-        flex
-        flex-col
+      w-[250px]
+      bg-white
+      rounded-[20px]
+      border
+      border-[#ececec]
+      p-5
+      flex
+      flex-col
       "
     >
-      <div className="p-6 border-b">
-        <h2 className="text-2xl font-bold">
-          Expense Tracker
-        </h2>
+      <h2 className="text-xl font-semibold mb-6">Expense Tracker</h2>
+
+      <div className="relative mb-8">
+        <Search size={16} className="absolute left-3 top-3 text-gray-400" />
+
+        <input
+          placeholder="Search"
+          className="
+            w-full
+            pl-10
+            h-10
+            rounded-[20px]
+            bg-[#f6f6f4]
+            border
+            border-[#ececec]
+            outline-none
+          "
+        />
       </div>
 
-      <nav className="p-4 flex-1">
-        <div className="space-y-2">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
+      <nav className="space-y-2">
+        <Link
+          href="/dashboard"
+          className="
+          flex items-center gap-3
+          px-4 py-3
+          rounded-[20px]
+          bg-[#405a45]
+          text-white
+          "
+        >
+          <Home size={18} />
+          Dashboard
+        </Link>
 
-            const active =
-              pathname === item.href;
+        <Link
+          href="/expenses"
+          className="flex items-center gap-3 px-4 py-3 rounded-[20px] hover:bg-[#f6f6f4]"
+        >
+          <Wallet size={18} />
+          Expenses
+        </Link>
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`
-                  flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  px-4
-                  py-3
-                  transition
-                  ${
-                    active
-                      ? "bg-black text-white"
-                      : "hover:bg-slate-100"
-                  }
-                `}
-              >
-                <Icon size={18} />
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
+        <Link
+          href="/categories"
+          className="flex items-center gap-3 px-4 py-3 rounded-[20px] hover:bg-[#f6f6f4]"
+        >
+          <Tags size={18} />
+          Categories
+        </Link>
+
+        <Link
+          href="/reports"
+          className="flex items-center gap-3 px-4 py-3 rounded-[20px] hover:bg-[#f6f6f4]"
+        >
+          <BarChart3 size={18} />
+          Reports
+        </Link>
+
+        <Link
+          href="/settings"
+          className="flex items-center gap-3 px-4 py-3 rounded-[20px] hover:bg-[#f6f6f4]"
+        >
+          <Settings size={18} />
+          Settings
+        </Link>
       </nav>
 
-      <div className="p-4 border-t">
+      <div className="mt-auto">
         <button
           onClick={handleLogout}
           className="
+            mt-auto
             w-full
+            bg-[#405a45]
+            text-white
+            rounded-[20px]
+            p-4
             flex
             items-center
-            gap-3
-            rounded-xl
-            px-4
-            py-3
-            text-red-500
-            hover:bg-red-50
-          "
+            justify-center
+            gap-2
+            "
         >
           <LogOut size={18} />
           Logout
@@ -139,4 +128,4 @@ export const DashboardSidebar = () => {
       </div>
     </aside>
   );
-}
+};

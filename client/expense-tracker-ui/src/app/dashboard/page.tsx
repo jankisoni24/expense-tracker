@@ -1,78 +1,55 @@
-import { StatsCard } from "@/components/dashboard/StatsCard";
+import { AssetDistribution } from "@/components/dashboard/AssetDistribution";
+import { FinancialHealth } from "@/components/dashboard/FinancialHealth";
+import { FavouriteTransactions } from "@/components/dashboard/FavouriteTransactions";
+import { MonthlyOverview } from "@/components/dashboard/MonthlyOverview";
+import { StatCard } from "@/components/dashboard/StatCard";
+import { WeeklyInsight } from "@/components/dashboard/WeeklyInsight";
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      <section
-        className="
-          grid
-          gap-6
-          md:grid-cols-2
-          xl:grid-cols-4
-        "
-      >
-        <StatsCard title="Total Balance" value="₹0" />
+    <div className="grid grid-cols-[2fr_1fr] gap-6">
+      {/* LEFT COLUMN */}
+      <div className="space-y-6">
+        {/* Total Earnings */}
+        <div>
+          <p className="text-muted-foreground">Total Earnings</p>
 
-        <StatsCard title="Income" value="₹0" />
-
-        <StatsCard title="Expenses" value="₹0" />
-
-        <StatsCard title="Savings" value="₹0" />
-      </section>
-
-      <section
-        className="
-          grid
-          gap-6
-          lg:grid-cols-3
-        "
-      >
-        <div
-          className="
-            lg:col-span-2
-            bg-white
-            rounded-2xl
-            border
-            p-6
-          "
-        >
-          <h2 className="font-semibold text-lg">Monthly Overview</h2>
-
-          <div className="h-[300px] flex items-center justify-center text-slate-400">
-            Chart Coming Soon
-          </div>
+          <h1 className="text-6xl font-bold mt-2">₹1,20,000</h1>
         </div>
 
-        <div
-          className="
-            bg-white
-            rounded-2xl
-            border
-            p-6
-          "
-        >
-          <h2 className="font-semibold text-lg">Financial Health</h2>
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4">
+          <StatCard title="Income" amount="₹53,000" color="#405a45" />
 
-          <div className="mt-8">
-            <div className="text-5xl font-bold">85%</div>
+          <StatCard title="Expense" amount="₹12,400" color="#e5ddc3" />
 
-            <p className="text-slate-500 mt-2">Excellent</p>
-          </div>
+          <StatCard title="Savings" amount="₹40,600" color="#d6c6dc" />
         </div>
-      </section>
 
-      <section
+        {/* Monthly Overview */}
+        <MonthlyOverview />
+
+        {/* Asset Distribution */}
+        <AssetDistribution />
+      </div>
+
+      {/* RIGHT COLUMN */}
+      <div
         className="
-          bg-white
-          rounded-2xl
-          border
-          p-6
+        flex
+        flex-col
+        gap-6
+        h-full
         "
       >
-        <h2 className="text-xl font-semibold mb-4">Recent Transactions</h2>
+        <WeeklyInsight />
 
-        <p className="text-slate-500">No expenses added yet.</p>
-      </section>
+        <FinancialHealth />
+
+        <div className="flex-1">
+          <FavouriteTransactions />
+        </div>
+      </div>
     </div>
   );
 }
